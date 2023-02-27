@@ -1,0 +1,35 @@
+name: defectdojo active findings
+description: A GitHub Action that checks if there are active findings for a product in DefectDojo
+
+inputs:
+  defectdojo-url:
+    description: the url of your defectdojo instance
+    required: true
+  defectdojo-username:
+    description: the username to login into your defectdojo instance
+    required: true
+  defectdojo-password:
+    description: the password to login into your defectdojo instance
+    required: true
+  defectdojo-product:
+    description: the defectdojo product that the scan result relates to
+    required: true
+  client-certificate-file-path:
+    description: the file path for a client side certificate if required
+    required: false
+  client-key-file-path:
+    description: the file path for a client side private key if required
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    DEFECT_DOJO_URL: ${{ inputs.defectdojo-url }}
+    DEFECT_DOJO_USERNAME: ${{ inputs.defectdojo-username }}
+    DEFECT_DOJO_PASSWORD: ${{ inputs.defectdojo-password }}
+    DEFECT_DOJO_PRODUCT: ${{ inputs.defectdojo-product }}
+    CLIENT_CERTIFICATE_FILE_PATH: ${{ inputs.client-certificate-file-path }}
+    CLIENT_KEY_FILE_PATH: ${{ inputs.client-key-file-path }}
+branding:
+  icon: 'shield'
+  color: 'orange'
