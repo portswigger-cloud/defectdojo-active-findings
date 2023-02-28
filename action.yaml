@@ -1,4 +1,5 @@
 name: defectdojo active findings
+
 description: A GitHub Action that checks if there are active findings for a product in DefectDojo
 
 inputs:
@@ -20,6 +21,7 @@ inputs:
   client-key-file-path:
     description: the file path for a client side private key if required
     required: false
+
 runs:
   using: docker
   image: docker://ghcr.io/portswigger-cloud/defectdojo-utils:latest
@@ -31,6 +33,21 @@ runs:
     DEFECT_DOJO_PRODUCT: ${{ inputs.defectdojo-product }}
     CLIENT_CERTIFICATE_FILE_PATH: ${{ inputs.client-certificate-file-path }}
     CLIENT_KEY_FILE_PATH: ${{ inputs.client-key-file-path }}
+
+outputs:
+  total:
+    description: the total number of active findings registered against this product in DefectDojo
+  critical:
+    description: the number of active critical severity findings registered against this product in DefectDojo
+  high:
+    description: the number of active high severity findings registered against this product in DefectDojo
+  medium:
+    description: the number of active medium severity findings registered against this product in DefectDojo
+  low:
+    description: the number of active low severity findings registered against this product in DefectDojo
+  info:
+    description: the number of active info severity findings registered against this product in DefectDojo
+    
 branding:
   icon: 'shield'
   color: 'orange'
