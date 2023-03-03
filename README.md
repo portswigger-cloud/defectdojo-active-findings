@@ -82,7 +82,7 @@ jobs:
     steps:
       - name: fail build on total finding
         id: fail-build-on-total-finding
-        if: ${{ needs.check-for-active-findings.outputs.total > 0 }}
+        if: ${{ needs.query-active-findings-from-defectdojo.outputs.total > 0 }}
         run: |
           echo "::error ::total number of security findings threshold has been exceeded please resolve in DefectDojo before continuing"
           exit 1
