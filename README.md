@@ -1,6 +1,8 @@
-# DefectDojo Active Findings
+# DefectDojo Active Findings v1
 
 This GitHub Action that queries the number of active finding in DefectDojo by product and writes a summary out to the GitHub Actions summary.
+
+portswigger-cloud/defectdojo-active-findings@v1
 
 __Example output__
 
@@ -70,7 +72,7 @@ jobs:
     steps:
       - name: get active findings from defectdojo
         id: get-active-findings-from-defectdojo
-        uses: portswigger-cloud/defectdojo-active-findings@main
+        uses: portswigger-cloud/defectdojo-active-findings@v1
         with:
           defectdojo-url: ${{ inputs.defectdojo-url }}
           defectdojo-username: ${{ secrets.defectdojo-username }}
