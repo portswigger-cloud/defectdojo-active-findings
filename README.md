@@ -59,33 +59,3 @@ jobs:
           defectdojo-password: ${{ secrets.defectdojo-password }}
           defectdojo-product: my-product
 ```
-
-### Using the total output to fail the build if total findings are greater than 0
-
-```
-name: generate-active-security-findings-summary-by-product
-on:
-  push
-jobs:
-  query-active-findings-from-defectdojo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: get active findings from defectdojo
-        id: get-active-findings-from-defectdojo
-        uses: portswigger-cloud/defectdojo-active-findings@v1
-        with:
-          defectdojo-url: ${{ inputs.defectdojo-url }}
-          defectdojo-username: ${{ secrets.defectdojo-username }}
-          defectdojo-password: ${{ secrets.defectdojo-password }}
-          defectdojo-product: my-product
-  fail-build-on-total-security-findings-thresholds:
-    needs: query-active-findings-from-defectdojo
-    runs-on: ubuntu-latest
-    steps:
-      - name: fail build on total finding
-        id: fail-build-on-total-finding
-        if: ${{ needs.query-active-findings-from-defectdojo.outputs.total > 0 }}
-        run: |
-          echo "::error ::total number of security findings threshold has been exceeded please resolve in DefectDojo before continuing"
-          exit 1
-```
