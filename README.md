@@ -45,7 +45,7 @@ DefectDojo active findings summary for my-product
 ```
 name: create-active-security-findings-summary-by-product-from-defectdojo
 on:
-  push
+    push
 jobs:
   query_active_findings_from_defectdojo:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
         id: get-active-findings-from-defectdojo
         uses: portswigger-cloud/defectdojo-active-findings@main
         with:
-          defectdojo-url: ${{ inputs.defectdojo-url }}
+          defectdojo-url:  https://defectdojo.example.con
           defectdojo-username: ${{ secrets.defectdojo-username }}
           defectdojo-password: ${{ secrets.defectdojo-password }}
           defectdojo-product: my-product
